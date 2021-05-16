@@ -66,6 +66,17 @@
     (type-color "#A020F0") ; x11 "purple"
     ;;
 
+    ;; rainbow delimiters colors
+    (rainbow-1 "#b0b0b0")
+    (rainbow-2 "#695085")
+    (rainbow-3 "#ff00ff")
+    (rainbow-4 "#b0b0b0")
+    (rainbow-5 "#695085")
+    (rainbow-6 "#ff00ff")
+    (rainbow-7 "#b0b0b0")
+    (rainbow-8 "#695085")
+    (rainbow-9 "#ff00ff")
+
     )
   (custom-theme-set-faces
     'darkplum
@@ -119,20 +130,30 @@
     `(line-number-minor-tick ((,class (:background ,background :foreground ,foreground))))
 
     ;; rainbow delimiters
-    `(rainbow-delimiters-depth-1 ((,class (:background ,background :foreground ,foreground))))
-    `(rainbow-delimiters-depth-2 ((,class (:background ,background :foreground ,light-foreground))))
-    `(rainbow-delimiters-depth-3 ((,class (:background ,background :foreground ,dark-foreground))))
-    `(rainbow-delimiters-depth-4 ((,class (:background ,background :foreground ,"red"))))
-    `(rainbow-delimiters-depth-4 ((,class (:background ,background :foreground ,"orange"))))
-    `(rainbow-delimiters-depth-6 ((,class (:background ,background :foreground ,"yellow"))))
-    `(rainbow-delimiters-depth-7 ((,class (:background ,background :foreground ,"green"))))
-    `(rainbow-delimiters-depth-8 ((,class (:background ,background :foreground ,"blue"))))
-    `(rainbow-delimiters-depth-9 ((,class (:background ,background :foreground ,"purple"))))
+    `(rainbow-delimiters-depth-1-face ((,class (:background ,background :foreground ,rainbow-1))))
+    `(rainbow-delimiters-depth-2-face ((,class (:background ,background :foreground ,rainbow-2))))
+    `(rainbow-delimiters-depth-3-face ((,class (:background ,background :foreground ,rainbow-3))))
+    `(rainbow-delimiters-depth-4-face ((,class (:bold t :background ,background :foreground ,rainbow-4))))
+    `(rainbow-delimiters-depth-4-face ((,class (:bold t :background ,background :foreground ,rainbow-5))))
+    `(rainbow-delimiters-depth-6-face ((,class (:bold t :background ,background :foreground ,rainbow-6))))
+    `(rainbow-delimiters-depth-7-face ((,class (:bold t :italic t :background ,background :foreground ,rainbow-7))))
+    `(rainbow-delimiters-depth-8-face ((,class (:bold t :italic t :background ,background :foreground ,rainbow-8))))
+    `(rainbow-delimiters-depth-9-face ((,class (:bold t :italic t :background ,background :foreground ,rainbow-9))))
 
+    ;; Headers
     `(info-title-1 ((,class (:height 2.0  :bold t :background ,background :foreground ,light-foreground))))
-    `(info-title-1 ((,class (:height 1.5  :bold t :background ,background :foreground ,light-foreground))))
-    `(info-title-1 ((,class (:height 1.25 :bold t :background ,background :foreground ,light-foreground))))
-    `(info-title-1 ((,class (:height 1.0  :bold t :background ,background :foreground ,light-foreground))))
+    `(info-title-2 ((,class (:height 1.5  :bold t :background ,background :foreground ,light-foreground))))
+    `(info-title-3 ((,class (:height 1.25 :bold t :background ,background :foreground ,light-foreground))))
+    `(info-title-4 ((,class (:height 1.0  :bold t :background ,background :foreground ,light-foreground))))
+
+    ;; Mardown Code Blocks
+    `(markdown-code-face ((,class (:foreground ,light-foreground))))
+    `(markdown-markup-face ((,class (:bold t :foreground ,comment))))
+
+    `(markdown-header-face-1 ((,class (:height 2.0  :bold t :background ,background :foreground ,keyword))))
+    `(markdown-header-face-2 ((,class (:height 1.5  :bold t :background ,background :foreground ,keyword))))
+    `(markdown-header-face-3 ((,class (:height 1.25 :bold t :background ,background :foreground ,keyword))))
+    `(markdown-header-face-4 ((,class (:height 1.0  :bold t :background ,background :foreground ,keyword))))
 
     (custom-theme-set-variables
       'darkplum
