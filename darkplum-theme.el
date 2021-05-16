@@ -32,7 +32,7 @@
 
 (deftheme darkplum "A dark plum theme.")
 
-(let
+(let*
   (
     (class
       '((class color) (min-colors 89)))
@@ -138,6 +138,7 @@
       'darkplum
       `(ansi-color-names-vector []))))
 
+;;;###autoload
 (when load-file-name
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
@@ -145,6 +146,7 @@
 (provide-theme 'darkplum)
 
 ;; Local Variables:
+;; no-byte-compile: t
 ;; End:
 
 ;;; darkplum-theme.el ends here
