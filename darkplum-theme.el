@@ -35,7 +35,7 @@
 (let*
   (
     (class
-      '((class color) (min-colors 89)))
+      '((class color) (min-colors 256)))
 
     ;; default colors
     (background "#2a2035") ; Dark plum color as the default background
@@ -149,11 +149,21 @@
     ;; Mardown Code Blocks
     `(markdown-code-face ((,class (:foreground ,light-foreground))))
     `(markdown-markup-face ((,class (:bold t :foreground ,comment))))
-
     `(markdown-header-face-1 ((,class (:height 2.0  :bold t :background ,background :foreground ,keyword))))
     `(markdown-header-face-2 ((,class (:height 1.5  :bold t :background ,background :foreground ,keyword))))
     `(markdown-header-face-3 ((,class (:height 1.25 :bold t :background ,background :foreground ,keyword))))
     `(markdown-header-face-4 ((,class (:height 1.0  :bold t :background ,background :foreground ,keyword))))
+
+    ;; Org-Mode
+    `(org-level-1 ((,class (:height 1.5  :bold t :foreground ,light-foreground))))
+    `(org-level-2 ((,class (:height 1.25 :bold t :foreground ,light-foreground))))
+    `(org-level-3 ((,class (:height 1.15 :bold t :foreground ,light-foreground))))
+    `(org-level-4 ((,class (:height 1.0  :bold t :foreground ,light-foreground))))
+    `(org-table ((,class (:foreground ,light-foreground))))
+
+    `(org-headline-done ((,class (:bold t :foreground ,comment))))
+    `(org-todo ((,class (:bold t :foreground ,keyword))))
+    `(org-done ((,class (:bold t :foreground ,comment))))
 
     (custom-theme-set-variables
       'darkplum
