@@ -77,6 +77,15 @@
     (rainbow-8 "#695085")
     (rainbow-9 "#ff00ff")
 
+    ;; ansi colors (for ansi-term)
+    (ansi-white foreground)
+    (ansi-black background)
+    (ansi-blue  "#dda0dd")
+    (ansi-cyan "#01b8b2")
+    (ansi-green "#01a853")
+    (ansi-magenta "#ffc0cb")
+    (ansi-red "#a020f0")
+    (ansi-yellow "#aaa853")
     )
   (custom-theme-set-faces
     'darkplum
@@ -164,6 +173,17 @@
     `(org-headline-done ((,class (:bold t :foreground ,comment))))
     `(org-todo ((,class (:bold t :foreground ,keyword))))
     `(org-done ((,class (:bold t :foreground ,comment))))
+
+    ;; ansi-term colors
+    `(term ((,class (:foreground ,foreground))))
+    `(term-color-black ((,class (:foreground ,ansi-black))))
+    `(term-color-blue ((,class (:foreground ,ansi-blue))))
+    `(term-color-cyan ((,class (:foreground ,ansi-cyan))))
+    `(term-color-green ((,class (:foreground ,ansi-green))))
+    `(term-color-magenta ((,class (:foreground ,ansi-magenta))))
+    `(term-color-red ((,class (:foreground ,ansi-red))))
+    `(term-color-white ((,class (:foreground ,ansi-white))))
+    `(term-color-yellow ((,class (:foreground ,ansi-yellow))))
 
     (custom-theme-set-variables
       'darkplum
