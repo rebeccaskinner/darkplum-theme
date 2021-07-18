@@ -13,28 +13,41 @@ theme](https://github.com/vic/rebecca-theme).
 
 If you manage your emacs configuration through [home
 manager](https://github.com/nix-community/home-manager) then you can enable
-darkplum with an overlay. For example:
+darkplum with an overlay. For example if you are using home-manager:
 
 ```nix
+{pkgs, ...}:
+{
   programs.emacs = {
     enable = true;
     overrides = self: super: rec {
       darkplum-theme = self.melpaBuild rec {
         name = "darkplum-theme";
         pname = "darkplum-theme";
-        version = "1.0.0";
+        version = "0.0.2";
         src = pkgs.fetchFromGitHub {
           owner = "rebeccaskinner";
           repo = "darkplum-theme";
-          rev = "524865effa82b64ccd5c791f9a9e851434531401";
-          sha256 = "0fffzkwvjkijqrywy3m0m32jb4xhfgvj079ydwklc110z6zbxax2";
+          rev = "c4a3d472775f1d534ce4e23a226a3b2b462f624d";
+          sha256 = "0wlv86dfsv6vl3ik6xygdaxd9j1iy5kwibsy5csr7isry26w8kbj";
         };
-        buildInputs = [];
         recipe = pkgs.writeText "recipe" ''
           (darkplum-theme
           :repo "rebeccaskinner/darkplum-theme"
-          :fetcher github
-          :files ("darkplum-theme.el"))
+          :fetcher github)
+        '';
+        installPhase = ''
+          runHook preInstall
+          archive="$NIX_BUILD_TOP/source/$ename.el"
+          if [ ! -f "$archive" ]; then
+              echo "archive not found ($archive)"
+              archive="$NIX_BUILD_TOP/packages/$ename-$version.tar"
+          fi
+          emacs --batch -Q \
+              -l "$elpa2nix" \
+              -f elpa2nix-install-package \
+              "$archive" "$out/share/emacs/site-lisp/elpa"
+          runHook postInstall
         '';
         meta = {
           description = "A dark purple theme for emacs";
@@ -43,7 +56,16 @@ darkplum with an overlay. For example:
         license = pkgs.lib.licenses.gpl3Plus.spdxId;
       };
     };
-    extraPackages = epkgs: with epkgs; [darkplum-theme];
+
+    extraPackages = epkgs: with epkgs; [
+    darkplum-theme
+    # other packages go here
+    ];
+  };
+
+  home.file.".emacs.d" = {
+    source = ./emacs.d;
+    recursive = true;
   };
 }
 ```
