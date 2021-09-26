@@ -42,45 +42,45 @@
     (foreground "#b0b0b0") ; Light grey color as the default foreground
     (cursor     "#ffc0cb") ; X11 pink
 
+    ;; common programming colors
+    (keyword "#9370DB")
+    (comment "#645464")
+    (identifier "#dda0dd")
+    (operator "#eac6ea")
+    (error-color "#FF1493")
+    (warning-color "#FFE4B5")
+    (info-color "#FFC0CB")
+    (string-color "#ece0ec")
+    (function-color "#da70d6")
+    (type-color "#aa38f2")
+    ;;
+
+
     ;; alternate defaults
-    (dark-background  "#201520") ; slightly darker default background
-    (light-background "#695085")
+    (dark-background  "#1d1625") ; slightly darker default background
+    (half-light-background  "#362945") ; slightly darker default background
+    (light-background "#433355")
     (dark-foreground  "#441177")
     (light-foreground "#ffbff2")
 
     ;; modeline colors
-    (modeline-background "#262626")
-    (modeline-foreground "#dda0dd")
-    (modeline-inactive-foreground "#edcced")
-    (modeline-error-background "#380308")
-    (modeline-error-foreground "#ddbbbb")
-
-    ;; common programming colors
-    (keyword "#9370DB") ; dark magenta
-    (comment "#757575")
-    (identifier "#dda0dd") ; x11 "plum"
-    (operator "#ffc0cb")   ; x11 "pink"
-
-    (error-color "#FF1493")
-    (warning-color "#FFE4B5")
-    (info-color "#FFC0CB")
-
-    (string-color "#FFE4E1") ; x11 "linen"
-
-    (function-color "#da70d6") ; x11 "orchid"
-    (type-color "#A020F0") ; x11 "purple"
-    ;;
+    (modeline-background light-background)
+    (modeline-foreground light-foreground)
+    (modeline-inactive-foreground light-foreground)
+    (modeline-inactive-background half-light-background)
+    (modeline-error-background modeline-background)
+    (modeline-error-foreground error-color)
 
     ;; rainbow delimiters colors
-    (rainbow-1 "#b0b0b0")
-    (rainbow-2 "#695085")
-    (rainbow-3 "#ff00ff")
-    (rainbow-4 "#b0b0b0")
-    (rainbow-5 "#695085")
-    (rainbow-6 "#ff00ff")
-    (rainbow-7 "#b0b0b0")
-    (rainbow-8 "#695085")
-    (rainbow-9 "#ff00ff")
+    (rainbow-1 "#ffc0cb")
+    (rainbow-2 "#ffa7b6")
+    (rainbow-3 "#ff8da1")
+    (rainbow-4 "#ff748c")
+    (rainbow-5 "#fff35f")
+    (rainbow-6 "#ffdae0")
+    (rainbow-7 "#ffc0cb")
+    (rainbow-8 "#ffa7b6")
+    (rainbow-9 "#ff8da1")
 
     ;; ansi colors (for ansi-term)
     (ansi-white foreground)
@@ -92,6 +92,7 @@
     (ansi-red "#a020f0")
     (ansi-yellow "#aaa853")
     )
+
   (custom-theme-set-faces
     'darkplum
     `(default
@@ -124,8 +125,11 @@
 
     ;; modeline faces
     `(mode-line           ((,class (:bold t :background ,modeline-background :foreground ,modeline-foreground))))
-    `(mode-line-inactive  ((,class (:background ,modeline-background :foreground ,modeline-inactive-foreground))))
+    `(mode-line-inactive  ((,class (:background ,modeline-inactive-background :foreground ,modeline-inactive-foreground))))
     `(compilation-mode-line-fail ((,class (:background ,modeline-error-background :foreground ,modeline-error-foreground))))
+
+    ;; line numbers
+    `(line-number ((,class (:background ,background :foreground ,comment))))
 
     ;; minibuffer faces
     `(minibuffer-prompt ((,class (:bold t :foreground ,light-foreground))))
@@ -170,6 +174,7 @@
     ;; lsp-ui
     `(lsp-ui-sideline-code-action ((,class (:foreground ,light-foreground :bold t))))
     `(lsp-ui-peek-file-name ((,class (:foreground ,light-foreground))))
+
     ;; lsp-treemacs
     `(lsp-treemacs-file-hint ((,class (:foreground ,info-color :italic t))))
     `(lsp-treemacs-file-info ((,class (:foreground ,info-color :bold t))))
@@ -229,12 +234,12 @@
     `(rainbow-delimiters-depth-1-face ((,class (:background ,background :foreground ,rainbow-1))))
     `(rainbow-delimiters-depth-2-face ((,class (:background ,background :foreground ,rainbow-2))))
     `(rainbow-delimiters-depth-3-face ((,class (:background ,background :foreground ,rainbow-3))))
-    `(rainbow-delimiters-depth-4-face ((,class (:bold t :background ,background :foreground ,rainbow-4))))
-    `(rainbow-delimiters-depth-4-face ((,class (:bold t :background ,background :foreground ,rainbow-5))))
-    `(rainbow-delimiters-depth-6-face ((,class (:bold t :background ,background :foreground ,rainbow-6))))
-    `(rainbow-delimiters-depth-7-face ((,class (:bold t :italic t :background ,background :foreground ,rainbow-7))))
-    `(rainbow-delimiters-depth-8-face ((,class (:bold t :italic t :background ,background :foreground ,rainbow-8))))
-    `(rainbow-delimiters-depth-9-face ((,class (:bold t :italic t :background ,background :foreground ,rainbow-9))))
+    `(rainbow-delimiters-depth-4-face ((,class (:background ,background :foreground ,rainbow-4))))
+    `(rainbow-delimiters-depth-4-face ((,class (:background ,background :foreground ,rainbow-5))))
+    `(rainbow-delimiters-depth-6-face ((,class (:background ,background :foreground ,rainbow-6))))
+    `(rainbow-delimiters-depth-7-face ((,class (:bold t :background ,background :foreground ,rainbow-7))))
+    `(rainbow-delimiters-depth-8-face ((,class (:bold t :background ,background :foreground ,rainbow-8))))
+    `(rainbow-delimiters-depth-9-face ((,class (:bold t :background ,background :foreground ,rainbow-9))))
 
     ;; Headers
     `(info-title-1 ((,class (:height 2.0  :bold t :background ,background :foreground ,light-foreground))))
