@@ -56,12 +56,17 @@
     (modeline-error-foreground "#ddbbbb")
 
     ;; common programming colors
-    (keyword "#7643a9")
-    (comment "#5a5075")
+    (keyword "#9370DB") ; dark magenta
+    (comment "#757575")
     (identifier "#dda0dd") ; x11 "plum"
     (operator "#ffc0cb")   ; x11 "pink"
-    (error-color "#871b60")
-    (string-color "#ffc0cb") ; x11 "thistle"
+
+    (error-color "#FF1493")
+    (warning-color "#FFE4B5")
+    (info-color "#FFC0CB")
+
+    (string-color "#FFE4E1") ; x11 "linen"
+
     (function-color "#da70d6") ; x11 "orchid"
     (type-color "#A020F0") ; x11 "purple"
     ;;
@@ -93,10 +98,12 @@
        (
          (((class color) (min-colors 4096))
            (:foreground ,foreground :background ,background))
+
          (((class color) (min-colors 256))
-           (:foreground ,foreground :background ,background))
+           (:foreground ,"#dddddd" :background ,"#000000"))
+
          (,class
-           (:foreground ,foreground :background ,background))))
+           (:foreground ,"#dddddd" :background ,"#000000"))))
 
     ;; general editing faces
 
@@ -109,6 +116,12 @@
     `(lazy-highlight      ((,class (:background ,light-background))))
     `(trailing-whitespace ((,class (:background ,error-color))))
 
+    `(success ((,class (:foreground ,light-foreground :italic t))))
+    `(warning ((,class (:foreground ,warning-color :italic t))))
+    `(error ((,class (:foreground ,error-color :italic t))))
+    `(compilation-warning ((,class (:foreground ,warning-color))))
+    `(breakpoint-enabled ((,class (:foreground ,error-color))))
+
     ;; modeline faces
     `(mode-line           ((,class (:bold t :background ,modeline-background :foreground ,modeline-foreground))))
     `(mode-line-inactive  ((,class (:background ,modeline-background :foreground ,modeline-inactive-foreground))))
@@ -118,7 +131,7 @@
     `(minibuffer-prompt ((,class (:bold t :foreground ,light-foreground))))
 
     ;; font lock faces
-    `(font-lock-builtin-face ((,class (:foreground ,keyword))))
+    `(font-lock-builtin-face ((,class (:bold t :foreground ,keyword))))
     `(font-lock-comment-face ((,class (:foreground ,comment))))
     `(font-lock-doc-face ((,class (:bold t :foreground ,comment))))
     `(font-lock-constant-face ((,class (:bold t))))
@@ -129,6 +142,80 @@
     `(font-lock-warning-face ((,class (:underline t))))
     `(font-lock-preprocessor-face ((,class (:foreground ,light-foreground))))
     `(font-lock-string-face ((,class (:foreground ,string-color))))
+
+    ;; flycheck
+    `(flycheck-error
+      ((,(append '((supports :underline (:style wave))) class)
+        (:underline (:style wave :color ,error-color)))
+       (,class (:foreground ,foreground :background ,error-color :inherit bold :underline t))))
+
+    `(flycheck-warning
+      ((,(append '((supports :underline (:style wave))) class)
+        (:underline (:style wave :color ,warning-color)))
+       (,class (:foreground ,foreground :background ,warning-color :inherit bold :underline t))))
+
+    `(flycheck-info
+      ((,(append '((supports :underline (:style wave))) class)
+        (:underline (:style wave :color ,info-color)))
+       (,class (:foreground ,foreground :background ,info-color :inherit bold :underline t))))
+
+    `(flycheck-error-list-checker-name ((,class (:foreground ,keyword))))
+    `(flycheck-error-list-info ((,class (:foreground ,info-color))))
+    `(flycheck-error-list-warning ((,class (:foreground ,warning-color))))
+
+    `(flycheck-fringe-error ((,class (:foreground ,error-color :inherit bold))))
+    `(flycheck-fringe-info ((,class (:foreground ,info-color :inherit bold))))
+    `(flycheck-fringe-warning ((,class (:foreground ,warning-color :inherit bold))))
+
+    ;; lsp-ui
+    `(lsp-ui-sideline-code-action ((,class (:foreground ,light-foreground :bold t))))
+    `(lsp-ui-peek-file-name ((,class (:foreground ,light-foreground))))
+    ;; lsp-treemacs
+    `(lsp-treemacs-file-hint ((,class (:foreground ,info-color :italic t))))
+    `(lsp-treemacs-file-info ((,class (:foreground ,info-color :bold t))))
+    `(lsp-treemacs-file-warn ((,class (:foreground ,warning-color :bold t))))
+
+    ;; lsp-headerline
+    `(lsp-headerline-breadcrumb-path-hint-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,info-color)))
+       (,class (:foreground ,foreground :background ,info-color :inherit bold :underline t))))
+
+    `(lsp-headerline-breadcrumb-path-info-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,info-color)))
+       (,class (:foreground ,foreground :background ,info-color :inherit bold :underline t))))
+
+    `(lsp-headerline-breadcrumb-path-warning-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,warning-color)))
+       (,class (:foreground ,foreground :background ,warning-color :inherit bold :underline t))))
+
+    `(lsp-headerline-breadcrumb-path-error-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,error-color)))
+       (,class (:foreground ,foreground :background ,error-color :inherit bold :underline t))))
+
+    `(lsp-headerline-breadcrumb-symbols-hint-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,info-color)))
+       (,class (:foreground ,foreground :background ,info-color :italic t :underline t))))
+
+    `(lsp-headerline-breadcrumb-symbols-info-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,info-color)))
+       (,class (:foreground ,light-foreground :background ,info-color :bold t :underline t))))
+
+    `(lsp-headerline-breadcrumb-symbols-warning-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,warning-color)))
+       (,class (:foreground ,light-foreground :background ,warning-color :bold t :underline t))))
+
+    `(lsp-headerline-breadcrumb-symbols-error-face
+      ((,(append '((supports :underline (:style line))) class)
+        (:underline (:style line :color ,error-color)))
+       (,class (:foreground ,light-foreground :background ,error-color :bold t :underline t))))
+
 
     ;; links
     `(link ((,class (:underline t :foreground ,light-foreground))))
@@ -187,7 +274,9 @@
 
     (custom-theme-set-variables
       'darkplum
-      `(ansi-color-names-vector []))))
+      `(ansi-color-names-vector [])))
+)
+
 
 ;;;###autoload
 (when load-file-name
