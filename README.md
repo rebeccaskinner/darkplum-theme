@@ -3,9 +3,41 @@
 DarkPlum is a dark purple theme, originally based on the [Rebecca
 theme](https://github.com/vic/rebecca-theme).
 
+## Recent Updates
+
+### 2021-09-26
+
+1. Tweaked some colors to provide more consistency and better contrast
+2. Added support for lsp-mode colors
+3. Added support for line number colors
+4. Improved general support for colors like `warning` or `success`
+5. Rainbow delimiters now have more colors
+
 ## Screenshots
 
-![A Screenshot Of An Emacs Pane With Several Windows](./screenshots/example1.png)
+### Faces
+
+![Faces Overview](./screenshots/faces.png)
+
+### ELisp Code
+
+![ELisp Screenshot](./screenshots/elisp.png)
+
+### Haskell Code with LSP-Mode Active
+
+![Haskell Screenshot](./screenshots/language-server.png)
+
+### Rust Code
+
+![Rust Screenshot](./screenshots/rust.png)
+
+### C Code
+
+![C Screenshot](./screenshots/c.png)
+
+### Markdown
+
+![Markdown Screenshot](./screenshots/markdown.png)
 
 ## Installation
 
@@ -28,8 +60,8 @@ darkplum with an overlay. For example if you are using home-manager:
         src = pkgs.fetchFromGitHub {
           owner = "rebeccaskinner";
           repo = "darkplum-theme";
-          rev = "c4a3d472775f1d534ce4e23a226a3b2b462f624d";
-          sha256 = "0wlv86dfsv6vl3ik6xygdaxd9j1iy5kwibsy5csr7isry26w8kbj";
+          rev = "7a93038ede49c1c30e540d510d54ef83e00c2bce";
+          sha256 = "0rsfvx8nsq9sbkdzs4mjqfwsqdwg5zz9y4wyqq05pamdhchmy2al";
         };
         recipe = pkgs.writeText "recipe" ''
           (darkplum-theme
